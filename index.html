@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Melih'in Ders Programı</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <title>Devamsızlık Takibi</title>
 </head>
 <body>
 
-<div class="header-container">
-  <div class="profil">
-    <div class="avatar">⚡️</div>
-    <div class="bilgi">
-      <h2>Melih Kalem</h2>
-      <p>Elektrik-Elektronik Müh. (2. Sınıf)</p>
-    </div>
-  </div>
-</div>
+  <h1>Devamsızlık Takibi</h1>
 
-<div class="container">
-  <h1 class="baslik">Devamsızlık Takibi</h1>
-  <div id="dersler"></div>
-</div>
+  <button onclick="testFirestore()">Firestore Test</button>
 
-<!-- 🔥 FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase bağlantısı -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-<!-- 🔥 APP -->
-<script src="script.js"></script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAqp_-jUZF_Zdco88xJcCkuxokQN1vcQ54",
+      authDomain: "devamsizliktakibi-fee57.firebaseapp.com",
+      projectId: "devamsizliktakibi-fee57",
+      storageBucket: "devamsizliktakibi-fee57.firebasestorage.app",
+      messagingSenderId: "854378978552",
+      appId: "1:854378978552:web:631666c882050ee275af0d"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // 🔥 script.js içinden erişebilmek için
+    window.db = db;
+  </script>
+
+  <!-- Senin JS dosyan -->
+  <script type="module" src="script.js"></script>
+
 </body>
 </html>
