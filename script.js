@@ -1,17 +1,11 @@
-// 🔥 FIREBASE CONFIG (BURAYI KENDİ PROJENDEN DOLDUR)
-const firebaseConfig = {
-  apiKey: "API_KEY",
-  authDomain: "PROJECT_ID.firebaseapp.com",
-  projectId: "PROJECT_ID",
-  storageBucket: "PROJECT_ID.appspot.com",
-  messagingSenderId: "XXXX",
-  appId: "XXXX"
-};
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-// 👤 KULLANICI
+// 👤 KULLANICI (Document ID)
 const USER_ID = "Melih";
 
 // 📚 DERSLER
@@ -32,24 +26,31 @@ async function yukle() {
   container.innerHTML = "";
 
   for (const ders of dersListesi) {
-    const ref = db
-      .collection("devamsizlik")
-      .doc(USER_ID)
-      .collection("dersler")
-      .doc(ders.ad);
+    const ref = doc(
+      window.db,
+      "devamsizlik",
+      USER_ID,
+      "dersler",
+      ders.ad
+    );
 
-    const doc = await ref.get();
-    let yapilan = doc.exists ? doc.data().yapilan : 0;
+    const snap = await getDoc(ref);
 
-    if (!doc.exists) {
-      await ref.set({
+    let yapilan = 0;
+
+    if (snap.exists()) {
+      yapilan = snap.data().yapilan;
+    } else {
+      await setDoc(ref, {
         yapilan: 0,
         limit: ders.limit
       });
     }
 
     const kalan = ders.limit - yapilan;
-    let durum = kalan <= 0 ? "tehlike" : kalan <= 2 ? "uyari" : "ok";
+    const durum =
+      kalan <= 0 ? "tehlike" :
+      kalan <= 2 ? "uyari" : "ok";
 
     const div = document.createElement("div");
     div.className = "ders";
@@ -68,22 +69,24 @@ async function yukle() {
 }
 
 // ➕➖ GÜNCELLE
-async function degistir(dersAdi, miktar) {
-  const ref = db
-    .collection("devamsizlik")
-    .doc(USER_ID)
-    .collection("dersler")
-    .doc(dersAdi);
+window.degistir = async function (dersAdi, miktar) {
+  const ref = doc(
+    window.db,
+    "devamsizlik",
+    USER_ID,
+    "dersler",
+    dersAdi
+  );
 
-  const doc = await ref.get();
-  let yapilan = doc.data().yapilan;
-  const limit = doc.data().limit;
+  const snap = await getDoc(ref);
+  let yapilan = snap.data().yapilan;
+  const limit = snap.data().limit;
 
   if (miktar > 0 && yapilan < limit) yapilan++;
   if (miktar < 0 && yapilan > 0) yapilan--;
 
-  await ref.update({ yapilan });
+  await updateDoc(ref, { yapilan });
   yukle();
-}
+};
 
 yukle();

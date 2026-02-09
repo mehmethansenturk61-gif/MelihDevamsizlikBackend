@@ -3,14 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <title>Devamsızlık Takibi</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <h1>Devamsızlık Takibi</h1>
 
-  <button onclick="testFirestore()">Firestore Test</button>
+  <!-- 🔥 DERSLER BURAYA GELECEK -->
+  <div id="dersler"></div>
 
-  <!-- Firebase bağlantısı -->
+  <!-- Firebase core -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -19,7 +23,7 @@
       apiKey: "AIzaSyAqp_-jUZF_Zdco88xJcCkuxokQN1vcQ54",
       authDomain: "devamsizliktakibi-fee57.firebaseapp.com",
       projectId: "devamsizliktakibi-fee57",
-      storageBucket: "devamsizliktakibi-fee57.firebasestorage.app",
+      storageBucket: "devamsizliktakibi-fee57.appspot.com",
       messagingSenderId: "854378978552",
       appId: "1:854378978552:web:631666c882050ee275af0d"
     };
@@ -27,11 +31,11 @@
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // 🔥 script.js içinden erişebilmek için
+    // 🔥 script.js erişsin diye
     window.db = db;
   </script>
 
-  <!-- Senin JS dosyan -->
+  <!-- Senin JS -->
   <script type="module" src="script.js"></script>
 
 </body>
