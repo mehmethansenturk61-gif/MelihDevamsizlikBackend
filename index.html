@@ -193,6 +193,26 @@
         </div>
     </div>
 
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+    <script>
+      // Firebase yapılandırması
+      const firebaseConfig = {
+        apiKey: "AIzaSyAqp_-jUZF_Zdco88xJcCkuxokQN1vcQ54",
+        authDomain: "devamsizliktakibi-fee57.firebaseapp.com",
+        projectId: "devamsizliktakibi-fee57",
+        storageBucket: "devamsizliktakibi-fee57.firebasestorage.app",
+        messagingSenderId: "854378978552",
+        appId: "1:854378978552:web:631666c882050ee275af0d"
+      };
+      
+      // Firebase'i başlat
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
+
     <script src="app.js"></script>
 </body>
 </html>

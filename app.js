@@ -1,3 +1,14 @@
+// Ders isimleri (Firestore'da kayıt için)
+const dersIsimleri = [
+    "Devreler II",
+    "Mühendislikte İngilizce II", 
+    "Sayısal Çözümleme",
+    "Elektronik I",
+    "Mühendislik Matematiği",
+    "Elektromanyetik Dalgalar",
+    "Güç Sistemleri"
+];
+
 // Derslerin verilerini tutan dizi
 const dersler = [
     { devamsizlik: 0, toplamDers: 14, maxDevamsizlik: 8 },
@@ -11,6 +22,9 @@ const dersler = [
 
 // Sayfa yüklendiğinde
 document.addEventListener('DOMContentLoaded', function() {
+    // Firebase'den verileri yükle
+    yukleVeri();
+    
     // Tüm ders kartlarını bul
     const dersKartlari = document.querySelectorAll('.ders-kart');
     
@@ -34,9 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // LocalStorage'dan verileri yükle (sayfa yenilendiğinde kaybolmasın)
-    yukleVeri();
 });
 
 // Kartı güncelle
@@ -62,26 +73,50 @@ function guncelle(kart, index) {
         kart.classList.add('tehlike');
     }
     
-    // LocalStorage'a kaydet
-    kaydetVeri();
+    // Firebase'e kaydet
+    kaydetVeri(index);
 }
 
-// Verileri kaydet
-function kaydetVeri() {
-    localStorage.setItem('devamsizlikVerileri', JSON.stringify(dersler));
+// Firebase'e kaydet
+function kaydetVeri(index) {
+    const dersAdi = dersIsimleri[index];
+    
+    db.collection('Melih').doc('dersler').collection('liste').doc(dersAdi).set({
+        devamsizlik: dersler[index].devamsizlik,
+        toplamDers: dersler[index].toplamDers,
+        maxDevamsizlik: dersler[index].maxDevamsizlik
+    })
+    .then(() => {
+        console.log("✅ " + dersAdi + " kaydedildi!");
+    })
+    .catch((error) => {
+        console.error("❌ Hata:", error);
+    });
 }
 
-// Verileri yükle
+// Firebase'den verileri yükle
 function yukleVeri() {
-    const kaydedilmisVeri = localStorage.getItem('devamsizlikVerileri');
-    if (kaydedilmisVeri) {
-        const yuklenenVeri = JSON.parse(kaydedilmisVeri);
-        yuklenenVeri.forEach((ders, index) => {
-            dersler[index].devamsizlik = ders.devamsizlik;
-            const kart = document.querySelector(`[data-ders="${index}"]`);
-            if (kart) {
-                guncelle(kart, index);
+    db.collection('Melih').doc('dersler').collection('liste').get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            const dersAdi = doc.id;
+            const data = doc.data();
+            const index = dersIsimleri.indexOf(dersAdi);
+            
+            if (index !== -1) {
+                dersler[index].devamsizlik = data.devamsizlik;
+                dersler[index].toplamDers = data.toplamDers;
+                dersler[index].maxDevamsizlik = data.maxDevamsizlik;
+                
+                const kart = document.querySelector(`[data-ders="${index}"]`);
+                if (kart) {
+                    guncelle(kart, index);
+                }
             }
         });
-    }
+        console.log("✅ Veriler Firebase'den yüklendi!");
+    })
+    .catch((error) => {
+        console.log("⚠️ İlk açılış, veriler yükleniyor...");
+    });
 }
