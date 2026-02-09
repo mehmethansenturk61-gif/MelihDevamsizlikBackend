@@ -5,7 +5,7 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 👤 KULLANICI (Document ID)
+// 👤 KULLANICI
 const USER_ID = "Melih";
 
 // 📚 DERSLER
@@ -57,10 +57,10 @@ async function yukle() {
 
     div.innerHTML = `
       <h3>${ders.ad}</h3>
-      <p>Kalan: <strong class="${durum}">${kalan}</strong></p>
+      <p>Kalan: <strong class="kalan-badge ${durum}">${kalan}</strong></p>
       <div class="butonlar">
-        <button onclick="degistir('${ders.ad}', -1)">➖</button>
-        <button onclick="degistir('${ders.ad}', 1)">➕</button>
+        <button class="azalt" onclick="degistir('${ders.ad}', -1)">➖</button>
+        <button class="arttir" onclick="degistir('${ders.ad}', 1)">➕</button>
       </div>
     `;
 
@@ -89,4 +89,5 @@ window.degistir = async function (dersAdi, miktar) {
   yukle();
 };
 
+// 🚀 BAŞLAT
 yukle();
