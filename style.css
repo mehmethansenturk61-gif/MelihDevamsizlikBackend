@@ -1,15 +1,8 @@
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
   background: linear-gradient(135deg, #e3f2fd, #fce4ec);
   padding: 20px;
-  color: #333;
   margin: 0;
-  overflow-x: hidden;
-}
-
-/* ===== HEADER ===== */
-.header-container {
-  margin-bottom: 25px;
 }
 
 .profil {
@@ -17,86 +10,49 @@ body {
   padding: 20px;
   border-radius: 18px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 15px;
+  align-items: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .avatar {
-  font-size: 32px;
-  background: #fff3e0;
-  color: #f57c00;
   width: 55px;
   height: 55px;
+  border-radius: 50%;
+  background: #fff3e0;
+  color: #f57c00;
+  font-size: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
 }
 
-.bilgi h2 {
-  margin: 0;
-  font-size: 19px;
-  color: #1a1a1a;
-}
-
-.bilgi p {
-  margin: 5px 0 0 0;
-  color: #666;
-  font-size: 13px;
-  font-weight: 500;
-}
-
-/* ===== BAŞLIK ===== */
-h1.baslik {
-  text-align: left;
-  margin: 20px 5px 15px;
-  font-size: 16px;
+.baslik {
+  margin: 20px 0 10px;
+  font-size: 15px;
   color: #555;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
 }
 
-/* ===== DERS KARTI ===== */
 .ders {
   background: white;
   padding: 20px;
-  margin-bottom: 15px;
   border-radius: 20px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-  transition: transform 0.2s;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-.ders:active {
-  transform: scale(0.98);
-}
-
-.ders h3 {
-  margin: 0 0 15px 0;
-  font-size: 17px;
-  color: #222;
-  font-weight: 600;
-}
-
-/* ===== BİLGİLER ===== */
 .bilgiler {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin: 15px 0;
   font-size: 14px;
 }
 
-.kalan-badge {
-  font-weight: bold;
-}
+.kalan.ok { color: #2e7d32; }
+.kalan.uyari { color: #ed6c02; }
+.kalan.tehlike { color: #d32f2f; }
 
-.kalan-badge.ok { color: #2e7d32; }
-.kalan-badge.uyari { color: #ed6c02; }
-.kalan-badge.tehlike { color: #d32f2f; }
-
-/* ===== BUTONLAR ===== */
 .butonlar {
   display: flex;
   gap: 10px;
@@ -107,27 +63,16 @@ button {
   padding: 12px;
   border: none;
   border-radius: 12px;
-  cursor: pointer;
   font-weight: 600;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-button:active {
-  opacity: 0.85;
+  cursor: pointer;
 }
 
 .arttir {
-  background: #ef5350;
+  background: #1976d2;
   color: white;
-  box-shadow: 0 4px 10px rgba(239, 83, 80, 0.2);
 }
 
 .azalt {
-  background: #66bb6a;
+  background: #9e9e9e;
   color: white;
-  box-shadow: 0 4px 10px rgba(102, 187, 106, 0.2);
 }

@@ -5,18 +5,17 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// 👤 KULLANICI
 const USER_ID = "Melih";
 
-// 📚 DERSLER
+// 📚 Dersler (sıra SABİT)
 const dersListesi = [
   { ad: "Devreler II", limit: 8 },
-  { ad: "Mühendislikte İngilizce II", limit: 8 },
-  { ad: "Sayısal Çözümleme", limit: 8 },
   { ad: "Elektronik I", limit: 8 },
   { ad: "Mühendislik Matematiği", limit: 8 },
+  { ad: "Sayısal Çözümleme", limit: 8 },
   { ad: "Elektromanyetik Dalgalar", limit: 8 },
-  { ad: "Güç Sistemleri", limit: 8 }
+  { ad: "Güç Sistemleri", limit: 8 },
+  { ad: "Mühendislikte İngilizce II", limit: 8 }
 ];
 
 const container = document.getElementById("dersler");
@@ -26,14 +25,7 @@ async function yukle() {
   container.innerHTML = "";
 
   for (const ders of dersListesi) {
-    const ref = doc(
-      window.db,
-      "devamsizlik",
-      USER_ID,
-      "dersler",
-      ders.ad
-    );
-
+    const ref = doc(window.db, "devamsizlik", USER_ID, "dersler", ders.ad);
     const snap = await getDoc(ref);
 
     let yapilan = 0;
@@ -41,10 +33,7 @@ async function yukle() {
     if (snap.exists()) {
       yapilan = snap.data().yapilan;
     } else {
-      await setDoc(ref, {
-        yapilan: 0,
-        limit: ders.limit
-      });
+      await setDoc(ref, { yapilan: 0, limit: ders.limit });
     }
 
     const kalan = ders.limit - yapilan;
@@ -57,37 +46,42 @@ async function yukle() {
 
     div.innerHTML = `
       <h3>${ders.ad}</h3>
-      <p>Kalan: <strong class="kalan-badge ${durum}">${kalan}</strong></p>
+
+      <div class="bilgiler">
+        <span>Toplam: <b>${ders.limit}</b></span>
+        <span>Yapılan: <b class="yapilan">${yapilan}</b></span>
+        <span>Kalan: <b class="kalan ${durum}">${kalan}</b></span>
+      </div>
+
       <div class="butonlar">
-        <button class="azalt" onclick="degistir('${ders.ad}', -1)">➖</button>
-        <button class="arttir" onclick="degistir('${ders.ad}', 1)">➕</button>
+        <button class="arttir">Ekle</button>
+        <button class="azalt">Geri Al</button>
       </div>
     `;
+
+    const yapilanSpan = div.querySelector(".yapilan");
+    const kalanSpan = div.querySelector(".kalan");
+
+    div.querySelector(".arttir").onclick = async () => {
+      if (yapilan < ders.limit) {
+        yapilan++;
+        await updateDoc(ref, { yapilan });
+        yapilanSpan.textContent = yapilan;
+        kalanSpan.textContent = ders.limit - yapilan;
+      }
+    };
+
+    div.querySelector(".azalt").onclick = async () => {
+      if (yapilan > 0) {
+        yapilan--;
+        await updateDoc(ref, { yapilan });
+        yapilanSpan.textContent = yapilan;
+        kalanSpan.textContent = ders.limit - yapilan;
+      }
+    };
 
     container.appendChild(div);
   }
 }
 
-// ➕➖ GÜNCELLE
-window.degistir = async function (dersAdi, miktar) {
-  const ref = doc(
-    window.db,
-    "devamsizlik",
-    USER_ID,
-    "dersler",
-    dersAdi
-  );
-
-  const snap = await getDoc(ref);
-  let yapilan = snap.data().yapilan;
-  const limit = snap.data().limit;
-
-  if (miktar > 0 && yapilan < limit) yapilan++;
-  if (miktar < 0 && yapilan > 0) yapilan--;
-
-  await updateDoc(ref, { yapilan });
-  yukle();
-};
-
-// 🚀 BAŞLAT
 yukle();

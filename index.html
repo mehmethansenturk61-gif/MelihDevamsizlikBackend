@@ -3,40 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <title>Devamsızlık Takibi</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <h1>Devamsızlık Takibi</h1>
+  <!-- PROFİL -->
+  <div class="header-container">
+    <div class="profil">
+      <div class="avatar">⚡</div>
+      <div class="bilgi">
+        <h2>Melih Kalem</h2>
+        <p>Elektrik-Elektronik Mühendisliği</p>
+        <p>2. Sınıf Öğrencisi</p>
+      </div>
+    </div>
+  </div>
 
-  <!-- 🔥 DERSLER BURAYA GELECEK -->
+  <h1 class="baslik">Devamsızlık Durumu</h1>
+
+  <!-- DERSLER -->
   <div id="dersler"></div>
 
-  <!-- Firebase core -->
+  <!-- Firebase -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
     const firebaseConfig = {
-      apiKey: "AIzaSyAqp_-jUZF_Zdco88xJcCkuxokQN1vcQ54",
-      authDomain: "devamsizliktakibi-fee57.firebaseapp.com",
-      projectId: "devamsizliktakibi-fee57",
-      storageBucket: "devamsizliktakibi-fee57.appspot.com",
-      messagingSenderId: "854378978552",
-      appId: "1:854378978552:web:631666c882050ee275af0d"
+      apiKey: "API_KEY",
+      authDomain: "PROJECT_ID.firebaseapp.com",
+      projectId: "PROJECT_ID",
+      storageBucket: "PROJECT_ID.appspot.com",
+      messagingSenderId: "XXXX",
+      appId: "XXXX"
     };
 
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // 🔥 script.js erişsin diye
-    window.db = db;
+    window.db = getFirestore(app);
   </script>
 
-  <!-- Senin JS -->
   <script type="module" src="script.js"></script>
-
 </body>
 </html>
