@@ -1,78 +1,272 @@
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
-  background: linear-gradient(135deg, #e3f2fd, #fce4ec);
-  padding: 20px;
+/* RESET */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
-.profil {
-  background: white;
+/* BODY */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #222;
   padding: 20px;
-  border-radius: 18px;
+}
+
+/* APP */
+#app {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.header {
+  margin-bottom: 30px;
+}
+
+.profil-kart {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 30px;
   display: flex;
-  gap: 15px;
   align-items: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  gap: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .avatar {
-  width: 55px;
-  height: 55px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  background: #fff3e0;
-  color: #f57c00;
-  font-size: 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 36px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
 }
 
-.baslik {
-  margin: 20px 0 10px;
+.profil-bilgi h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bolum {
   font-size: 15px;
   color: #555;
+  margin-bottom: 4px;
+}
+
+.sinif {
+  font-size: 14px;
+  color: #777;
+}
+
+/* BAŞLIK */
+.sayfa-baslik {
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.sayfa-baslik h2 {
+  font-size: 18px;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  color: white;
+  margin-bottom: 5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.ders {
-  background: white;
-  padding: 20px;
+.sayfa-baslik span {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* GRID */
+#dersler-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* KART */
+.ders-kart {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.bilgiler {
+.ders-kart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.ders-kart:hover::before {
+  transform: scaleX(1);
+}
+
+.ders-kart:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.ders-kart h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* SAYILAR */
+.sayilar {
   display: flex;
   justify-content: space-between;
-  margin: 15px 0;
-  font-size: 14px;
+  margin-bottom: 20px;
+  gap: 10px;
 }
 
-.kalan.ok { color: #2e7d32; }
-.kalan.uyari { color: #ed6c02; }
-.kalan.tehlike { color: #d32f2f; }
+.sayilar div {
+  text-align: center;
+  flex: 1;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 12px;
+}
 
+.etiket {
+  font-size: 10px;
+  color: #888;
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.sayilar strong {
+  font-size: 20px;
+  display: block;
+  font-weight: 700;
+}
+
+/* PROGRESS BAR */
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.4s ease;
+}
+
+.progress-fill.ok {
+  background: linear-gradient(90deg, #2e7d32, #4caf50);
+}
+
+.progress-fill.uyari {
+  background: linear-gradient(90deg, #ed6c02, #ff9800);
+}
+
+.progress-fill.tehlike {
+  background: linear-gradient(90deg, #d32f2f, #f44336);
+}
+
+.yuzde-text {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* DURUMLAR */
+.ders-kart.ok .sayilar div:last-child strong { 
+  color: #2e7d32; 
+}
+
+.ders-kart.uyari .sayilar div:last-child strong { 
+  color: #ed6c02; 
+}
+
+.ders-kart.tehlike .sayilar div:last-child strong { 
+  color: #d32f2f; 
+}
+
+/* BUTONLAR */
 .butonlar {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 button {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   border: none;
   border-radius: 12px;
   font-weight: 600;
+  font-size: 14px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.arttir {
-  background: #1976d2;
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.ekle {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
 }
 
-.azalt {
-  background: #9e9e9e;
+.geri {
+  background: linear-gradient(135deg, #9e9e9e 0%, #757575 100%);
   color: white;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #dersler-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .profil-kart {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profil-bilgi h1 {
+    font-size: 24px;
+  }
 }

@@ -1,47 +1,198 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>Devamsızlık Takibi</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Öğrenci Devamsızlık Takip Sistemi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="app">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="profil-kart">
+                <div class="avatar">👨‍🎓</div>
+                <div class="profil-bilgi">
+                    <h1>Öğrenci Paneli</h1>
+                    <div class="bolum">Elektrik-Elektronik Mühendisliği</div>
+                    <div class="sinif">Bahar Dönemi 2025</div>
+                </div>
+            </div>
+        </div>
 
-  <!-- PROFİL -->
-  <div class="header-container">
-    <div class="profil">
-      <div class="avatar">⚡</div>
-      <div class="bilgi">
-        <h2>Melih Kalem</h2>
-        <p>Elektrik-Elektronik Mühendisliği</p>
-        <p>2. Sınıf Öğrencisi</p>
-      </div>
+        <!-- BAŞLIK -->
+        <div class="sayfa-baslik">
+            <h2>Derslerim</h2>
+            <span>Devamsızlık durumunuzu takip edin (Devamsızlık hakkı: 8)</span>
+        </div>
+
+        <!-- DERSLER GRİD -->
+        <div id="dersler-grid">
+            
+            <!-- DERS 1 -->
+            <div class="ders-kart ok">
+                <h3>Devreler II</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 2 -->
+            <div class="ders-kart ok">
+                <h3>Mühendislikte İngilizce II</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 3 -->
+            <div class="ders-kart ok">
+                <h3>Sayısal Çözümleme</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 4 -->
+            <div class="ders-kart ok">
+                <h3>Elektronik I</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 5 -->
+            <div class="ders-kart ok">
+                <h3>Mühendislik Matematiği</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 6 -->
+            <div class="ders-kart ok">
+                <h3>Elektromanyetik Dalgalar</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+            <!-- DERS 7 -->
+            <div class="ders-kart ok">
+                <h3>Güç Sistemleri</h3>
+                <div class="sayilar">
+                    <div>
+                        <span class="etiket">Toplam Ders</span>
+                        <strong>14</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Devamsızlık</span>
+                        <strong>0</strong>
+                    </div>
+                    <div>
+                        <span class="etiket">Kalan Hak</span>
+                        <strong>8</strong>
+                    </div>
+                </div>
+                <div class="butonlar">
+                    <button class="ekle">+ Ekle</button>
+                    <button class="geri">- Geri Al</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
 
-  <h1 class="baslik">Devamsızlık Durumu</h1>
-
-  <!-- DERSLER -->
-  <div id="dersler"></div>
-
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "API_KEY",
-      authDomain: "PROJECT_ID.firebaseapp.com",
-      projectId: "PROJECT_ID",
-      storageBucket: "PROJECT_ID.appspot.com",
-      messagingSenderId: "XXXX",
-      appId: "XXXX"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    window.db = getFirestore(app);
-  </script>
-
-  <script type="module" src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
